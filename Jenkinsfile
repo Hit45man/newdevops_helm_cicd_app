@@ -1,19 +1,11 @@
 pipeline{
 
     agent any
-
+       environment {
+        PATH = "$PATH:/usr/share/maven"
+    }
     stages{
-
         stage('Sonar Quality check'){
-
-              agent {
-
-                docker {
-
-                    image 'maven'
-                }
-
-              }
             steps{
 
                 script{
