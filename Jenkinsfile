@@ -70,7 +70,7 @@ pipeline {
             steps{
                 script{
                         sh 'cd /var/lib/jenkins/workspace/Demo-pipeline'
-                        sh 'docker image  build -t demo-app:v.1.$BUILD_ID .'
+                        sh 'docker image  build -t $JOB_NAME:v.1.$BUILD_ID .'
             }
         }
      }
@@ -78,8 +78,8 @@ pipeline {
             steps{
                 script{
                     sh 'cd /var/lib/jenkins/workspace/Demo-pipeline'
-                    sh 'docker image tag demo-app:v.1.$BUILD_ID rohikam/demo-app:v.1.$BUILD_ID'
-                    sh 'docker image tag demo-app:v.1.$BUILD_ID rohikam/demo-app:latest'
+                    sh 'docker image tag $JOB_NAME:v.1.$BUILD_ID rohikam/$JOB_NAME:v.1.$BUILD_ID'
+                    sh 'docker image tag $JOB_NAME:v.1.$BUILD_ID rohikam/$JOB_NAME:latest'
                 }
             }
         }
@@ -92,11 +92,11 @@ pipeline {
                      
                      sh 'cd /var/lib/jenkins/workspace/Demo-pipeline'
                      
-                     sh 'docker image push  rohikam/demo-app:v.1.$BUILD_ID'
+                     sh 'docker image push  rohikam/$JOB_NAME:v.1.$BUILD_ID'
                      
-                     sh 'docker image push  rohikam/demo-app:latest'
+                     sh 'docker image push  rohikam/$JOB_NAME:latest'
                      
-                     sh 'docker image rm  rohikam/demo-app:v.1.$BUILD_ID  rohikam/demo-app:latest'
+                     sh 'docker image rm  rohikam/$JOB_NAME:v.1.$BUILD_ID  rohikam/$JOB_NAME:latest'
                    }
                 }
             }
